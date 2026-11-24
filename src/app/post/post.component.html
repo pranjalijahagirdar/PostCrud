@@ -1,0 +1,51 @@
+<h1 class="bg-primary text-center p-2">Post Crud</h1>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="Title">Title*</label>
+                        <input type="text" class="form-control" id="Title" #TitleRef>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content*</label>
+                        <input type="text" class="form-control" id="content" #contentRef>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-sm btn-primary" *ngIf="!isInEditMode" (click)="AddBlog()">Add</button>
+                        <button class="btn btn-sm btn-primary" *ngIf="isInEditMode" (click)="updateBlog()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <ng-container *ngIf="blogArr.length > 0; else noBlog">
+            <div class="col-md-4 mb-3" *ngFor="let blog of blogArr; trackBy : trackById">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h2>{{blog.title}}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>{{blog.content}}</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <button class="btn btn-sm btn-primary"(click)="editBlogs(blog)">Edit</button>
+                        <button class="btn btn-sm btn-danger"(click)="onDeleteblog(blog.id)" [disabled]="id===blog.id">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #noBlog>
+            <div class="col-12">
+                <p class="alert alert-info text-center">
+                    No Blog added yet !!!
+                </p>
+            </div>
+        </ng-template>
+    </div>
+</div>
