@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
 @ViewChild('contentRef')contentref!:ElementRef;
 blogArr : Array<Iblog> = blogArr;
 isInEditMode:boolean = false;
+
 id!: string;
 
   constructor(
